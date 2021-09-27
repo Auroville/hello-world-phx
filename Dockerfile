@@ -1,12 +1,12 @@
-FROM gitpod/workspace-postgres
+FROM almajumdar/phoenix-pg:1.12
 
-USER root
-RUN wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
-    dpkg -i erlang-solutions_2.0_all.deb && \
-    apt-get update && \
-#    apt-get install -y erlang && \
-    apt-get install -y esl-erlang && \
-    apt-get install -y elixir && \
-    mix local.hex --force && \
-    mix archive.install hex phx_new 1.5.3 --force && \ 
-    mix local.rebar --force
+# Create app directory and copy the Elixir projects into it
+WORKDIR /app
+COPY . .
+
+# Install hex package manager
+RUN mix do deps.get, deps.compile
+
+EXPOSE 4000
+
+CMD ["/bin/bash", "/app/entrypoint.sh"]
