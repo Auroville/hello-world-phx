@@ -3,7 +3,7 @@
 {
 	"name": "Elixir, Phoenix, Node.js & PostgresSQL (Community)",
 	"dockerFile": "../Dockerfile",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/hello-world-phx",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
