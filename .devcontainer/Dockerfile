@@ -3,6 +3,8 @@ FROM bitwalker/alpine-elixir-phoenix
 EXPOSE 4000
 ENV PORT=4000 MIX_ENV=prod
 
+WORKDIR /workspace
+
 # Cache elixir deps
 ADD mix.exs mix.lock ./
 RUN mix do deps.get, deps.compile
