@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  app:
+    command:
+    - sleep
+    - infinity
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+    - type: bind
+      source: /Users/am/Documents/GitHub/hello-world-phx
+      target: /workspace
+      bind:
+        create_host_path: true
+    depends_on:
+      - db
+    environment:
+      MIX_ENV: dev
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: hello_world_dev
+      PGPORT: 5432
+      PGHOST: db
+    ports:
+      - 4000:4000
+volumes:
+  db-data:
