@@ -1,4 +1,4 @@
-FROM bitwalker/alpine-elixir-phoenix
+FROM almajumdar/phoenix-pg
 
 EXPOSE 4000
 ENV PORT=4000 MIX_ENV=prod
