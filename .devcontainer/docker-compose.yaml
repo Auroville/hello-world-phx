@@ -26,12 +26,6 @@ services:
     build: .
     stdin_open: true
     tty: true
-    volumes:
-    - type: bind
-      source: /Users/am/Documents/GitHub/hello-world-phx
-      target: /workspace
-      bind:
-        create_host_path: true
     depends_on:
       - db
     environment:
