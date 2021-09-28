@@ -2,9 +2,9 @@
 
 # Update the VARIANT arg in docker-compose.yml to pick an Elixir version: 1.9, 1.10, 1.10.4
 ARG VARIANT=1.12.3
-ARG PHOENIX_VERSION:1.5.7
-#ARG NODE_VERSION="none"
-ARG NODE_VERSION="lts/*"
+ARG PHOENIX_VERSION:1.5.13
+ARG NODE_VERSION="none" 
+#ARG NODE_VERSION="lts/*"
 
 FROM elixir:${VARIANT}
 
@@ -19,9 +19,6 @@ ARG INSTALL_ZSH="true"
 ARG UPGRADE_PACKAGES="true"
 ARG COMMON_SCRIPT_SOURCE="https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.194.0/script-library/common-debian.sh"
 ARG COMMON_SCRIPT_SHA="53c6267bf57b4ea6bb6128ba2e415f15831f2db42b140080e2d789327dff572e"
-
-# Optional Settings for Phoenix
-ARG PHOENIX_VERSION="1.5.4"
 
 ARG NODE_SCRIPT_SOURCE="https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/node-debian.sh"
 ARG NODE_SCRIPT_SHA="dev-mode"
@@ -41,7 +38,7 @@ RUN apt-get update \
   && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
   #
   # [Optional] Install Node.js for use with web applications
-  && if [ "$NODE_VERSION" != "none" ]; then \
+  && if [ "${NODE_VERSION}" != "none" ]; then \
   curl -sSL ${NODE_SCRIPT_SOURCE} -o /tmp/node-setup.sh \
   && ([ "${NODE_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/node-setup.sh" | sha256sum -c -)) \
   && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}"; \
