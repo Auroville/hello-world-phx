@@ -1,4 +1,4 @@
-FROM almajumdar/phoenix-pg
+FROM almajumdar/phoenix-pg:1.5.13
 
 EXPOSE 4000
 ENV PORT=4000 MIX_ENV=prod
