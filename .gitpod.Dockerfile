@@ -1,13 +1,21 @@
-FROM hexpm/elixir:1.12.3-erlang-24.1-ubuntu-focal-20210325
+FROM almajumdar/pg-elixir:1.12.3-otp-24.1
 
-RUN apt-get update && \
-    apt-get install -y postgresql-client && \
-    apt-get install -y inotify-tools && \
-    apt-get install -y nodejs && \
-    apt-get install -y curl && \
-    curl -L https://npmjs.org/install.sh | sh && \
-    mix local.hex --force && \
-    mix archive.install hex phx_new 1.5.3 --force && \
-    mix local.rebar --force
+EXPOSE 4000
+ENV PORT=4000 MIX_ENV=prod
 
-WORKDIR /app
+# Cache elixir deps
+ADD mix.exs mix.lock ./
+RUN mix do deps.get, deps.compile
+
+# Same with npm deps
+ADD assets/package.json assets/
+RUN cd assets && \
+    npm install
+
+ADD . .
+
+# Run frontend build, compile, and digest assets
+RUN cd assets/ && \
+    npm run deploy && \
+    cd - && \
+    mix do compile, phx.digest
