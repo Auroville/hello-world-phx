@@ -11,5 +11,3 @@ RUN apt-get update && \
     mix local.rebar --force
 
 WORKDIR /app
-
-CMD ["mix", "phx.server"]
