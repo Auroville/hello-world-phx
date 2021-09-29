@@ -1,8 +1,14 @@
 tasks:
-  - init: |
-      docker-compose pull
-  - command: |
+  - name: Start DB & Adminer
+    init: |
+      docker-compose pull db
+    command: |
       docker-compose up
+  - name: Phoenix Application
+    init: |
+      docker-compose pull app
+    command: |
+      docker-compose exec app sh
 
 
 ports:
