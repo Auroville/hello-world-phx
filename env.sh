@@ -13,4 +13,6 @@ gp env PGUSER="gitpod"
 gp env SECRET_KEY_BASE="N5tC9rMlM2ETJ2U8HFYXF8vdeBrLp6sDjNMtmnxxz350nAugLFbaFkemAUdWsscW"
 gp env PGPASSWORD="postgres"
 
-gp env DATABASE_URL="postgresql://{$PGUSER}:{$PGPASSWORD}@{$PGHOST}:{$PGPORT}/{$PGDATABASE}"
+#environment variables don't take effect until gitpod workspace is restarted
+#gp env DATABASE_URL="postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}"
+gp env DATABASE_URL="postgresql://gitpod:postgres@localhost:5432/hello_world_dev"
