@@ -1,5 +1,5 @@
 tasks:
-  - name: Install front-end assets
+  - name: Hello World Phoenix
   - before: mix deps.get
     init: psql --command "CREATE USER postgres WITH SUPERUSER PASSWORD 'postgres';" |
       cd /workspace/hello-world-phx |
