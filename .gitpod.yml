@@ -4,10 +4,10 @@ image:
 tasks:
   - name: Hello World Phoenix
   - before: mix deps.get
-    init: psql --command "CREATE USER postgres WITH SUPERUSER PASSWORD 'postgres';" |
-      cd /workspace/hello-world-phx |
+    init: pg_start &&
+      cd /workspace/hello-world-phx &&
       mix ecto.create
-    command: mix ecto.migrate && mix run priv/repo/seeds.exs && iex -S mix phx.server   
+    command: entrypoint.sh   
 
 ports:
   - port: 4000
@@ -29,3 +29,7 @@ github:
     addComment: true
     # add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: false
+
+vscode:
+  extensions:
+    - elixir-lsp.elixir-ls
