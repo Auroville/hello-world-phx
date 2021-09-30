@@ -1,18 +1,11 @@
 tasks:
-  - name: Start DB & Adminer
-    init: |
-      docker-compose pull db
-    command: |
-      docker-compose up
-  - name: Phoenix Application
-    init: |
-      docker-compose pull app
-    command: |
-      docker-compose exec app sh
-
+  - name: Install front-end assets
+  - before: mix deps.get
+    init: psql --command "CREATE USER postgres WITH SUPERUSER PASSWORD 'postgres';" |
+      cd /workspace/hello-world-phx |
+      mix ecto.create
+    command: mix ecto.migrate && mix run priv/repo/seeds.exs && iex -S mix phx.server   
 
 ports:
   - port: 4000
-    onOpen: open-browser
-  - port: 8080
     onOpen: open-browser
