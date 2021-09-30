@@ -7,7 +7,7 @@ tasks:
     init: cd /workspace/hello-world-phx &&
       mix ecto.create
     command: cd /workspace/hello-world-phx &&
-      entrypoint.sh   
+      ./entrypoint.sh   
 
 ports:
   - port: 4000
