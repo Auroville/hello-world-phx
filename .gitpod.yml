@@ -4,8 +4,7 @@ image:
 tasks:
   - name: Hello World Phoenix
   - before: mix deps.get
-    init: pg_start &&
-      cd /workspace/hello-world-phx &&
+    init: cd /workspace/hello-world-phx &&
       mix ecto.create
     command: entrypoint.sh   
 
