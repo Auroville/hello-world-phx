@@ -1,3 +1,6 @@
+image:
+  file: .gitpod.dockerfile
+
 tasks:
   - name: Hello World Phoenix
   - before: mix deps.get
