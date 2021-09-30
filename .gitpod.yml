@@ -3,6 +3,7 @@ image:
 
 tasks:
   - name: Hello World Phoenix
+# postgres should be started automatically by the CMD in gitpod/workspace-postgres
     before: cd /workspace/hello-world-phx && 
       mix do deps.get, deps.compile
     command: cd /workspace/hello-world-phx &&
