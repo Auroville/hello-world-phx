@@ -3,9 +3,8 @@ image:
 
 tasks:
   - name: Hello World Phoenix
-    before: mix deps.get
-    init: cd /workspace/hello-world-phx &&
-      mix ecto.create
+    before: cd /workspace/hello-world-phx && 
+      mix do deps.get, deps.compile
     command: cd /workspace/hello-world-phx &&
       ./entrypoint.sh   
 
