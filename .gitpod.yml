@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: Hello World Phoenix
-  - before: mix deps.get
+    before: mix deps.get
     init: cd /workspace/hello-world-phx &&
       mix ecto.create
     command: entrypoint.sh   
